@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: black;
+      border: 2px solid yellow;
+      padding: 20px;
+      width: 400px;
+      color: white;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 10px;
+      background-color: gold;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #taskList {
+      background-color: white;
+      color: black;
+      height: 100px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    #exitBtn {
+      width: 100%;
+      background-color: gold;
+      color: black;
+      padding: 10px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <label for="taskInput">Enter the Task:</label>
+    <input type="text" id="taskInput" placeholder="Type your task here">
+    
+    <div class="btn-group">
+      <button onclick="addTask()">Add Task</button>
+      <button onclick="deleteTask()">Delete Task</button>
+      <button onclick="deleteAll()">Delete All Tasks</button>
+    </div>
+
+    <div id="taskList">
+      World's No.1 Site To Learn Python.<br>
+      Easy to Understand and Learn Things!<br>
+      You are at CopyAssignment.com
+    </div>
+
+    <button id="exitBtn" onclick="exitApp()">Exit</button>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const taskList = document.getElementById("taskList");
+
+      const task = taskInput.value.trim();
+      if (task !== "") {
+        const p = document.createElement("div");
+        p.textContent = task;
+        taskList.appendChild(p);
+        taskInput.value = "";
+      }
+    }
+
+    function deleteTask() {
+      const taskList = document.getElementById("taskList");
+      if (taskList.lastChild) {
+        taskList.removeChild(taskList.lastChild);
+      }
+    }
+
+    function deleteAll() {
+      document.getElementById("taskList").innerHTML = "";
+    }
+
+    function exitApp() {
+      // Simulate exit (in a web browser we can't really close the tab programmatically)
+      alert("Exiting the application.");
+    }
+  </script>
+</body>
+</html>
